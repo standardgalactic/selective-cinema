@@ -1,0 +1,87 @@
+\documentclass[11pt,openany]{book}
+
+\usepackage[margin=1.15in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathpazo}
+\usepackage[no-math]{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\crefname{part}{Part}{Parts}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Fam}{\mathcal{F}}
+
+\title{\textbf{Selective Cinema}\\[0.6em]
+\Large Blink-Rate Glasses and the Multiplexing of Narrative Experience}
+\author{Flyxion\\[0.3em]\normalsize Independent Researcher}
+\date{Draft, September 2026}
+
+\begin{document}
+\frontmatter
+\maketitle
+\tableofcontents
+\input{preface}
+
+\mainmatter
+\input{introduction}
+
+\part{The Screen as Carrier}
+\input{ch01-discrete-image}
+\input{ch02-period-and-phase}
+\input{ch03-capacity-luminance}
+\input{ch04-unfiltered-screen}
+
+\part{Variant Families}
+\input{ch05-family}
+\input{ch06-switch-admissibility}
+\input{ch07-divergence}
+\input{ch08-genre}
+\input{ch09-depth}
+\input{ch10-endings}
+
+\part{Sound}
+\input{ch11-composite-sound}
+
+\part{Space and Place}
+\input{ch12-viewpoint}
+\input{ch13-local}
+
+\part{Authoring}
+\input{ch14-matrix}
+\input{ch15-production}
+\input{ch16-editing}
+
+\part{Spectatorship}
+\input{ch17-synchronized-difference}
+\input{ch18-after-screening}
+\input{ch19-choice}
+
+\part{Access and Adaptation}
+\input{ch20-accessibility}
+\input{ch21-instruction}
+
+\part{Control of the Variant Set}
+\input{ch22-versions}
+\input{ch23-perceptual-rights}
+\input{ch24-persuasion}
+\input{ch25-which-film}
+
+\part{Evaluation}
+\input{ch26-evaluation}
+
+\input{conclusion}
+
+\appendix
+\input{appendices}
+
+\backmatter
+\input{bibliography}
+\end{document}

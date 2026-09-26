@@ -1,0 +1,43 @@
+\chapter{Perceptual Rights Management}\label{ch:perceptual-rights}
+
+Among the early notes behind this book is a proposal that sits uneasily with the rest of it: blink-rate glasses with patented algorithmic sequences, so that certain works could be seen only by glasses set to the correct sequence, and ``blink-rate protectors'' that let only authorized frames be seen. The same conversation discussed Cory Doctorow, one of the most persistent critics of digital rights management. This chapter takes the proposal seriously, as a design and as a warning, because it marks the point at which a device for selecting what one sees becomes a device for controlling it.
+
+\section{From phase to key}
+
+\Cref{ch:phase} ended with a distinction. Periodic gating, in which each stream occupies a fixed phase of a fixed period, makes a film selectable: anyone with adjustable glasses can see any stream. Concealment requires something else. The natural candidate is a schedule that is not periodic, in which slots are assigned to streams by a pseudorandom sequence generated from a secret key. Glasses holding the key open at the right moments and see the stream. Glasses without it open at the wrong moments and see a scramble of fragments from every stream, or nothing coherent at all.
+
+This is technically plausible. It is also a change in what the glasses are. Periodic glasses need only a timing reference and a dial. Keyed glasses need a secret, a way to receive it, a way to keep it from their owner, and usually a way for the exhibitor to confirm that the glasses are approved hardware that will not leak the key or the stream. They become, in the vocabulary of rights management, a trusted device: trusted, that is, by the licensor, and trusted precisely because they do not do what their wearer might want.
+
+\section{Rights management for perception}
+
+Digital rights management restricts what people can do with copies of works: whether they can copy, lend, move them between devices, or keep them after a subscription ends. Doctorow's criticism, sustained over many years \cite{doctorow}, is that such systems do little to stop determined copying while imposing real costs on ordinary users, locking them to vendors, making them unable to repair or inspect their own devices, and, where the law forbids circumvention, as section 1201 of the United States Digital Millennium Copyright Act does, making it an offense to find out what their own equipment is doing.
+
+Keyed gating would move rights management from the copy to the act of seeing. What is restricted is no longer a file but a percept: whether a person in the room, looking at the screen, may see what is on it. The restriction would be enforced by a device on the viewer's face that they could not inspect or modify without breaking it, and perhaps without breaking the law.
+
+The consequences follow from the device's new requirements. A trusted device must be authenticated, and authentication tends to require identity: which glasses, licensed to whom, for which work. The non-recording guarantee of \Cref{ch:phase}, that the simplest glasses can be shown by inspection to measure nothing, is lost the moment the glasses must hold a secret and prove their legitimacy. The glasses must now communicate with an authority, and a channel that carries a key to the glasses can carry information from them.
+
+\section{What keys cannot do}
+
+Keyed gating also fails at its own purpose, for a reason \Cref{ch:unfiltered} identified. The key controls when the glasses open. It does not control the screen. Every slot of every stream is shown in the room, to anyone who looks, and a camera with a short exposure, triggered at the right moments or simply run at a high frame rate, records the slots directly. Separating the streams afterward is a matter of finding the pattern, which a keyed schedule makes harder but does not make impossible, and which becomes trivial if one pair of licensed glasses is used to reveal it. This is a version of what rights-management critics call the analog hole: whatever is presented to a human sense can be captured by an instrument pointed at the same place.
+
+So keyed gating protects against the unaided eye and against casual glasses, and fails against anyone who brings a camera. It costs viewers the inspectability of their own equipment and protects works only against those least likely to copy them. That is the characteristic trade of rights management generally, now moved onto the face.
+
+\section{The other proposal}
+
+The same notes contained a different proposal, and it points somewhere better. A visitor is scanned, as at an airport, to show they carry no cameras or recorders, and then enters a room alone, where they are shown an original work made for them. On leaving, they receive a spoken passphrase that will let them see the work again later.
+
+This arrangement protects the work without putting anything on the viewer. The protection is the room: the absence of recording instruments, secured by a check at the door. The access afterward is a phrase held in the viewer's memory rather than a key held in a device. Nothing the viewer wears or carries is made untrustworthy to them. The work is protected by presence and by agreement, the conditions under which it is shown, rather than by an instrument that restricts what the viewer's own eyes can see.
+
+The contrast is instructive. Keyed glasses try to protect a work while it is shown to a room that may contain cameras, and they fail against the cameras while costing the viewers. The private room removes the cameras, and then needs no keys. It is also honest about what it is: a restricted viewing, entered knowingly, under stated conditions. It does not pretend to be a public screening.
+
+\section{A position}
+
+The chapter's position has three parts.
+
+First, selective cinema should be built on periodic gating. Its glasses should select and not restrict, carry no secrets, and remain inspectable, and the phases of a family's streams should follow an open standard so that any compliant glasses can use them.
+
+Second, where a work genuinely requires restricted viewing, the restriction should be made by the conditions of viewing, such as a private room or a closed screening, rather than by locking the viewer's equipment. Keyed gating, if used at all, should be confined to works declared as restricted, shown to audiences who know they are entering a restricted viewing, with glasses whose operation is documented.
+
+Third, the distinction between selection and restriction should never be blurred in how the technology is described or sold. A system that lets viewers choose among realizations and a system that prevents viewers from seeing realizations are different systems with different obligations. Calling the second by the name of the first would carry the trust earned by an honest filter into a device built to be trusted by someone else.
+
+The early notes proposed both patented sequences and the private room. The first is the more obvious extension of the glasses. The second is the better idea.

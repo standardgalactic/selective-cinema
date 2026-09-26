@@ -1,0 +1,47 @@
+\chapter{Production Architecture and Coordination Cost}\label{ch:production}
+
+A variant family must be made, and making several related films costs more than making one. How much more depends less on the number of realizations than on how they are produced and how much work it takes to keep them consistent with each other. This chapter compares production strategies and argues that the dominant cost of a variant family is coordination, not footage.
+
+\section{Four strategies}
+
+\emph{Separate productions} make each realization as its own film, sharing only the script's spine. They give the most freedom and cost the most, roughly as many films as there are realizations. They also share the fewest frames, so they are the most expensive to exhibit, in the light budget of \Cref{ch:capacity}.
+
+\emph{Shared master photography} shoots one set of footage covering the events common to all realizations and adds variant inserts: alternate performances of key moments, reaction shots, additional explanation, different endings. Most frames are shared, which keeps exhibition cheap and adaptive gating open. Freedom is limited by what the master footage allows.
+
+\emph{Modular production} breaks each scene into parts that are shot once and parts that vary. Invariant action, establishing shots, and anything whose meaning does not change are shot once; dialogue, reactions, explanation, and anything carrying genre or depth are shot in variants. It is shared master photography applied at the level of the shot rather than the scene, and it maps directly onto the spine and columns of the variant matrix.
+
+\emph{Virtual and generative production} builds scenes as models from which realizations are rendered: camera paths, lighting, sometimes performances. It makes variation cheap after the fact, especially variation of viewpoint and setting, and it moves cost from shooting to building and maintaining the models. It also creates new dependencies on software and asset preservation that the other strategies do not have.
+
+A real production will mix them: modular shooting for most scenes, separate staging for a few set pieces, rendering for backgrounds or viewpoints.
+
+\section{The coordination term}
+
+A rough cost model for a family $\Fam$ of $m$ realizations is
+\begin{equation}
+C(\Fam)=C_0+\sum_{k=1}^{m}C_k+\sum_{a<b}C_{ab},
+\end{equation}
+where $C_0$ is the cost of what all realizations share, $C_k$ is the additional cost of realization $k$ alone, and $C_{ab}$ is the cost of keeping realizations $a$ and $b$ consistent with each other: checking their envelopes, their dialogue under shared sound, their established facts, their composite, their switching.
+
+The first two terms are the familiar costs of making films. The third is new, and it grows with the number of pairs, which is $m(m-1)/2$: one pair for two realizations, three for three, six for four, forty-five for ten. Even when the footage for an extra realization is cheap, the obligations it creates with every other realization are not. This is the main reason, beyond the optical limits of Part~I, that variant families should stay small.
+
+\section{Coordinating through the spine}
+
+The quadratic growth is not inevitable everywhere, and the variant matrix shows where it can be avoided.
+
+At a structural rendezvous, the requirement is that every realization agree on $\mathcal R$. Agreement is transitive: if each realization agrees with the spine, they agree with each other. So at rendezvous, each realization can be checked against the spine alone, and the coordination cost there is linear in $m$ rather than quadratic. The same holds for envelopes, which are fixed on the spine's clock, and for shared-sound events, which are fixed in the shared track: each realization is checked against the fixed reference, not against every other realization.
+
+Between rendezvous, where realizations diverge, the checks that matter are genuinely relational. Whether a viewer can move from one realization to another depends on what both have established, and the switch system of \Cref{ch:switch-admissibility} must be computed over pairs and, strictly, over histories. The designed composite of \Cref{ch:unfiltered} couples all realizations at once. These costs cannot be routed through the spine.
+
+The practical lesson is structural. A family whose realizations meet the spine often, at frequent rendezvous with fixed envelopes and shared sound events, keeps most of its coordination linear. A family whose realizations diverge for long stretches pays the quadratic cost for the whole of each divergence. Frequent rendezvous are not only good for switching. They are how a family stays affordable.
+
+\section{Variant inflation}
+
+The coordination term also explains why the number of realizations a family advertises is a poor measure of what it offers. A family that crosses three independent dimensions, say two genres, two depths, and two endings, has a nominal count of eight. If the dimensions really were independent, its coordination cost would reflect eight realizations and twenty-eight pairs. In practice, as \Cref{ch:divergence} showed, the dimensions couple, and some of the eight combinations will be close to each other while others are expensive to keep coherent.
+
+There is a converse temptation: to inflate the nominal count with variations that cost little because they differ little. Four subtitle languages crossed with two endings is ``eight versions,'' and the eight differ from each other hardly at all. Describing a family by its count invites both errors. It should be described by its dimensions and, for each, by the distances it spends. \Cref{ch:versions} returns to this as a matter of honest description.
+
+\section{The family's crew}
+
+Coordination needs people. A variant family needs a role that ordinary productions do not: someone responsible for the family as a whole, who maintains the variant matrix, runs its checks, and has authority to require changes in one realization for the sake of another. On a conventional set, the continuity supervisor keeps one film consistent with itself across shots. A family needs something like a continuity supervisor for the relations between films.
+
+It also needs performers who understand what they are doing. An actor playing the same blocking twice, once for a thriller and once for a satire, is doing something closer to theater repertory than to ordinary screen acting, and one playing a line so that a single delivery reads two ways under two pictures is doing something that has no established name. The labor of variant production is real and specific, and \Cref{ch:versions} argues that it must be credited as such rather than folded into the apparent unity of a single title.

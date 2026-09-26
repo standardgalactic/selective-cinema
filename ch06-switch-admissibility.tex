@@ -1,0 +1,128 @@
+\chapter{Switch Admissibility}\label{ch:switch-admissibility}
+
+A viewer wearing adjustable glasses can turn the dial at any moment. Optically, nothing prevents it. Narratively, most moments are wrong. A viewer who switches from one realization to another may arrive in the middle of a scene whose meaning depends on something they never saw, or may be told something that contradicts what they saw a minute ago. This chapter defines when a switch works. The definition turns out to generate most of the structure a variant family needs: its anchors, its points of reconvergence, and the constraints its writers and editors must respect.
+
+\section{What a viewer carries}
+
+Fix the common clock of the family and write $t$ for a moment on it. Each realization $F_k$ presents a sequence of images and sounds; write $F_k^{\le t}$ for what it has presented up to $t$, and $F_k^{>t}$ for what it will present afterward.
+
+A viewer does not carry a realization. A viewer carries a \emph{history}: what they have actually received. A viewer who watched realization $a$ throughout has history $H=F_a^{\le t}$. A viewer who watched $a$ until time $s$ and then switched to $b$ has history
+\begin{equation}
+H(t)=F_a^{\le s}\cdot F_b^{(s,t]},
+\end{equation}
+the first part of one realization followed by a stretch of another. Histories can contain several switches, and, if the viewer removed their glasses for a while, stretches of the composite of \Cref{ch:unfiltered}.
+
+From a history, a viewer is entitled to certain beliefs about the story: who these people are, what has happened, what has been revealed. Write $\mathrm{Est}(H)$ for the set of propositions a history \emph{establishes}. This is not everything the viewer might guess, only what the film has presented as settled.
+
+\section{What a continuation needs}
+
+The future of a realization makes demands on the past. A scene in which a character is mourned presupposes that the viewer knows the character died. A scene in which an expert procedure is carried out without explanation presupposes that the viewer can follow it. For each realization $b$ and time $t$, write $\mathrm{Pre}_b(t)$ for the set of propositions the continuation $F_b^{>t}$ relies on the viewer already holding.
+
+The future also makes commitments. It will assert some things and take others for granted, including everything its own past established. Write $\mathrm{Com}_b(t)$ for the propositions the continuation commits to, whether by asserting them later or by treating them as true. Every presupposition is a commitment, so $\mathrm{Pre}_b(t)\subseteq\mathrm{Com}_b(t)$.
+
+\section{The condition}
+
+\begin{definition}[Switch admissibility]
+A viewer with history $H$ can \emph{admissibly} continue into realization $b$ at time $t$, written $H\leadsto_t b$, when two conditions hold:
+\begin{enumerate}
+\item \emph{coverage}: $\mathrm{Pre}_b(t)\subseteq\mathrm{Est}(H)$, so that everything the continuation relies on has been established for this viewer; and
+\item \emph{consistency}: $\mathrm{Est}(H)\cup\mathrm{Com}_b(t)$ is consistent, so that nothing the continuation commits to contradicts anything the viewer has been shown.
+\end{enumerate}
+\end{definition}
+
+The two conditions fail differently. A coverage failure leaves the viewer lost: the new realization refers to things they never saw. A consistency failure leaves the viewer deceived: the new realization contradicts what they were told, and nothing in it acknowledges the contradiction. The first is confusing, and the second is worse, because the viewer may not notice.
+
+Every realization should, of course, admit its own continuation. A realization in which $F_b^{\le t}\leadsto_t b$ fails at some $t$ is incoherent on its own terms, and the definition assumes this does not happen.
+
+For the formal claims that follow, one simplification is useful. Treat propositions as literals, facts and their negations, treat consistency as the absence of any fact together with its negation, and let $\mathcal R$ be the set of literals that any continuation in the family depends on, closed under negation. The simplification is crude as a theory of narrative meaning and sufficient for the structural points.
+
+\section{Four consequences}
+
+\subsection*{Admissibility is not symmetric}
+
+That a viewer on $a$ can move to $b$ at time $t$ says nothing about the reverse. Consider a family with an expert realization and a beginner realization of an instructional film. Treat each realization's declared prerequisites as established from its first frame: the expert realization takes its background as given from the start, while the beginner realization establishes the same background gradually by explaining it. At a moment when both are about to show the same step, the beginner continuation presupposes only what it has explained so far, and a viewer coming from the expert realization holds all of that. The switch from expert to beginner satisfies coverage. The switch from beginner to expert may not: the expert continuation presupposes the whole background, and the beginner realization has not yet supplied all of it. (Counting declared prerequisites as established is a presumption about viewers, not something the film has shown; \Cref{ch:depth} examines it.) The relation at each moment is a directed graph on the realizations, and its edges generally point one way.
+
+\subsection*{Admissibility belongs to histories, not to pairs of realizations}
+
+It is tempting to tabulate, for each moment, which realizations can be switched between, and to treat the table as the whole story. The table is not enough.
+
+\begin{proposition}
+The admissibility of a path with several switches is not determined by the admissibility of each switch computed from single-realization histories.
+\end{proposition}
+
+\begin{proof}
+Let the continuation of realization $a$ after time $s_2$ presuppose a literal $p$. Let $a$ establish $p$ only during the interval $(s_1,s_2]$, and let $b$ establish $p$ only before $s_1$. A viewer who watched only $a$ can switch to $b$ at $s_1$, other things being equal. A viewer who watched only $b$ holds $p$ at $s_2$, so the switch from $b$ back to $a$ at $s_2$ satisfies coverage. But a viewer who watched $a$ until $s_1$ and $b$ from $s_1$ to $s_2$ saw neither establishment of $p$, and the return to $a$ at $s_2$ fails coverage. Each switch passes the single-realization test and the path fails.
+\end{proof}
+
+\begin{remark}
+The failure has a simple source. Each switch changes the history against which the next switch must be judged. Compatibility checked pairwise, between whole realizations, does not compose, because a viewer who has switched is no longer carrying any one realization. This is the reason selective cinema needs a theory of histories rather than a table of compatible cuts.
+\end{remark}
+
+The same thing can happen with consistency: a literal picked up in one realization's segment can conflict with a third realization that neither of the others conflicted with.
+
+A viewer who moves between realizations carries a mixture, and the mixture can lack what a realization needs, or conflict with it, even when neither of its parts did. Admissibility is therefore a relation between a viewer's entire history and a continuation. Any system that permits repeated switching has to reason about histories, or restrict switching to moments where histories do not matter.
+
+\subsection*{Rendezvous make histories not matter}
+
+There are moments at which every realization has established the same things, as far as any continuation cares.
+
+\begin{definition}[Structural rendezvous]
+A time $t$ is a \emph{structural rendezvous} of the family when, for all realizations $a$ and $b$,
+\begin{equation}
+\mathrm{Est}\big(F_a^{\le t}\big)\cap\mathcal R=\mathrm{Est}\big(F_b^{\le t}\big)\cap\mathcal R .
+\end{equation}
+\end{definition}
+
+\begin{proposition}\label{prop:rendezvous}
+At a structural rendezvous, every single-realization history admits a switch into every realization.
+\end{proposition}
+
+\begin{proof}
+Let $t$ be a structural rendezvous and $a,b$ any realizations. Coverage: $\mathrm{Pre}_b(t)$ lies in $\mathcal R$ and in $\mathrm{Est}(F_b^{\le t})$, because $b$ is coherent, hence in $\mathrm{Est}(F_a^{\le t})$. Consistency: a conflict would pair some literal $\ell\in\mathrm{Com}_b(t)\subseteq\mathcal R$ with its negation in $\mathrm{Est}(F_a^{\le t})$. Since $\mathcal R$ is closed under negation, $\neg\ell$ lies in $\mathrm{Est}(F_a^{\le t})\cap\mathcal R=\mathrm{Est}(F_b^{\le t})\cap\mathcal R$, so $b$ would establish $\neg\ell$ and commit to $\ell$, contradicting its coherence.
+\end{proof}
+
+A structural rendezvous is where the family's realizations, however different their surfaces, agree on everything that will matter. It is the natural place to allow switching, the natural place for an intermission, and the natural definition of what the prospectus earlier called a synchronization anchor. The proposition covers single-realization histories only. A viewer who has already switched may carry literals no realization established on its own, and a rendezvous guarantees nothing about them unless the family also agrees on those. A family that wants unrestricted switching must therefore keep its divergences from establishing anything relevant that another realization could later contradict, which is a strong demand on writers.
+
+A weaker notion covers viewers who have already switched.
+
+\begin{definition}[Viewer-relative rendezvous]
+A time $t$ is a \emph{rendezvous for the history} $H$ when $H\leadsto_t b$ for every realization $b$.
+\end{definition}
+
+A structural rendezvous is a rendezvous for every single-realization history. A viewer-relative rendezvous may exist for a particular mixed history even where no structural rendezvous does, and may fail for it at a structural one. Keeping the two notions apart prevents ``rendezvous'' from becoming either too restrictive, if only the structural kind is recognized, or falsely universal, if the structural guarantee is assumed to cover everyone. Previously switched viewers rejoin at viewer-relative rendezvous.
+
+\subsection*{Time drift is absorbed, not excused}
+
+Realizations can drift apart on the common clock: one lingers on a scene the other passes quickly. The definition does not need a separate rule for this. A switch at clock time $t$ lands wherever realization $b$ is at $t$, and $\mathrm{Pre}_b(t)$ and $\mathrm{Com}_b(t)$ are computed there. If $b$ is behind, the viewer may see again something they have seen, which is harmless. If $b$ is ahead, its continuation may presuppose events the viewer has not yet reached, and coverage fails. Drift therefore shows up as admissibility failure, and the family's clock discipline, the accounting of time borrowed and repaid across realizations in \Cref{ch:editing}, is in part a discipline for keeping rendezvous possible.
+
+\section{The switch system}
+
+It would be convenient to summarize the relation, for designers and for projection metadata, as a sequence of directed graphs on the realizations, with an edge from $a$ to $b$ at time $t$ whenever $F_a^{\le t}\leadsto_t b$. Call this the \emph{realization graph} $\mathcal G_t$. It is complete at a structural rendezvous, thins between rendezvous as the realizations establish different things, and keeps one-way edges like the expert and beginner example. It is a useful picture of the family's shape.
+
+It is not a correct basis for deciding switches. Its edges are computed from single-realization histories, and the proposition above shows that a path along its edges can fail. A memoryless graph on realizations reproduces exactly the pairwise error the counterexample exposes. The correct object must carry some summary of what the viewer has received. Under the literal simplification, the summary can be made exact.
+
+\begin{proposition}
+Whether a history $H$ admits a switch into any realization at any later time depends on $H$ only through the pair
+\begin{equation}
+q=\big\langle k,\ \mathrm{Est}(H)\cap\mathcal R\big\rangle,
+\end{equation}
+where $k$ is the realization the viewer is currently watching.
+\end{proposition}
+
+\begin{proof}
+Presuppositions and commitments of every continuation lie in $\mathcal R$, and $\mathcal R$ is closed under negation, so both coverage and consistency depend only on $\mathrm{Est}(H)\cap\mathcal R$. The later evolution of that set, while the viewer stays on $k$ or switches again, depends only on the current realization and on what it goes on to establish.
+\end{proof}
+
+The \emph{switch system} of the family is therefore a transition system whose states at time $t$ are the reachable pairs $q_t$, and whose transitions are the admissible switches between states. Distinct histories with the same state are equivalent for all future switching, so the system stores equivalence classes of histories rather than the histories themselves. The number of reachable states is bounded by the number of realizations times the number of subsets of $\mathcal R$, but in practice it is far smaller, because most combinations of established facts cannot be produced by any sequence of switches. If tone or other constraints outside the literal model are tracked, the state grows to include them, but the principle is unchanged: the state must remember as much of the past as future admissibility depends on, and no less.
+
+This is the right object for exhibition. The projector's metadata can carry the reachable states and their transitions, and glasses that keep a small record of their own state, updated only by the switches their wearer makes, can use it without recording anything about the wearer beyond the position of their own dial. What to do with the information is an artistic and ethical decision, not a technical one. The glasses could allow only admissible switches, locking the dial otherwise. They could allow any switch and signal whether it is admissible. They could allow switching only at structural rendezvous, where no state needs to be kept at all. \Cref{ch:choice} considers these options and argues that the artist may legitimately constrain choice. The point here is that constraint can now be principled: not a blanket prohibition, but a restriction to switches that keep the viewer's history coherent.
+
+\section{What the definition leaves out}
+
+The definition concerns what a viewer is entitled to believe. It says nothing about feeling. A switch from a tragic realization to a comic one at the moment of a death may satisfy coverage and consistency perfectly and still be grotesque. Tone has continuity conditions of its own, and they are real, but they are matters of judgment rather than of entailment, and the book does not attempt to formalize them. The switch system marks where a move is coherent. Whether it is bearable remains for the makers, and the viewer, to decide.
+
+The definition also treats establishment as settled, when real films often establish things provisionally, mislead deliberately, and correct themselves later. A mystery's false suspect is established and then withdrawn. The framework accommodates this, because $\mathrm{Est}$ can be defined over what the film presents as settled at each moment, and withdrawals are simply literals that change. It does make one prediction: switching during a deliberate deception is hazardous, because the viewer may carry the deception into a realization that has already withdrawn it, or has never made it.
+
+\section{Selection as continuity}
+
+The chapter's result can be put simply. Choosing a realization is not like choosing an item from a menu, because the choice is made by someone who already carries a past. The relevant question is never only which film a viewer wants, but which films their history can be continued into. Selection in a variant family is a continuity relation between a history and a future, and the family's structure, its rendezvous, its drift, its one-way edges, is the shape of that relation over time.

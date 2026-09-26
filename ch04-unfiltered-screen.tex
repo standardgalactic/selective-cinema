@@ -1,0 +1,86 @@
+\chapter{The Unfiltered Screen}\label{ch:unfiltered}
+
+Every selective screening has a realization that nobody chose. It is what the screen shows to an eye without glasses: to a child who has taken them off, to a viewer who cannot wear them, to an usher walking down the aisle. The first three chapters treated this view as a side effect, a problem of brightness and leakage. This chapter treats it as part of the work.
+
+\section{What the unaided eye sees}
+
+Above the flicker fusion rate, the visual system does not register individual flashes. It responds, approximately, to their average over a short integration window. A viewer without glasses therefore sees something close to the time-weighted mean of every stream on the screen. If stream $j$ occupies a fraction $\delta_j$ of the slots, the unaided view is approximately
+\begin{equation}
+C(t)\approx\sum_{j=1}^{m}\delta_j\,P_j(t),
+\qquad \sum_j\delta_j=1,
+\end{equation}
+where $P_j(t)$ is the image of stream $j$ around time $t$. The average is of light, not of numbers. Here and throughout the chapter, images denote emitted luminance in linear light, not the gamma-encoded pixel values stored in files; averaging encoded values would predict the wrong composite. With two equal streams, $C$ is the average of the two pictures: a double exposure.
+
+During passages in which the streams coincide, every $P_j$ is the same image and $C$ equals it. The unaided viewer sees the film correctly. During divergent passages, the unaided viewer sees whatever the average of the divergent images happens to be. There are three ways to treat that average: tolerate it, suppress it, or design it.
+
+\section{Tolerating, suppressing, designing}
+
+To \emph{tolerate} the composite is to accept whatever double exposure results. It is the default, and it is usually unpleasant: two unrelated scenes superimposed at reduced contrast, with edges and faces from each competing.
+
+To \emph{suppress} the composite is to make it deliberately uninformative, for example by arranging the streams so that their average is a uniform field. The unaided viewer sees gray, or darkness, or a neutral pattern, and knows only that something is being shown to others.
+
+To \emph{design} the composite is to arrange the streams so that their average is itself a meaningful image, a third realization available to everyone without glasses. The composite then becomes a member of the variant family, the one that belongs to the whole room.
+
+\section{The empty gallery}
+
+Suppression has an exact construction. Let $G$ be a uniform gray image, and let $A$ be any image whose luminance lies between zero and $2G$ at every point. Define a second image
+\begin{equation}
+B=2G-A.
+\end{equation}
+Shown alternately at equal share, $A$ and $B$ average to
+\begin{equation}
+\tfrac12 A+\tfrac12 B=G.
+\end{equation}
+An unaided viewer sees a featureless gray field. The construction is exact only in linear light. In practice the images are linearized through the display's transfer function, the complement is computed there, the result is checked against the display's luminance range, and only then re-encoded for projection. The check matters, because $B$ must be physically displayable:
+\begin{equation}
+0\ \le\ 2G-A\ \le\ L_{\max}\quad\text{at every pixel},
+\end{equation}
+where $L_{\max}$ is the display's peak luminance. A viewer whose glasses admit only the $A$ slots sees $A$. A viewer admitting only the $B$ slots sees $B$, which is the complement of $A$ about the gray level: light where $A$ is dark, and dark where $A$ is light.
+
+This is the gallery that appears empty until the right glasses reveal the work, the idea in the early notes behind this book, and it is realizable with the apparatus of \Cref{ch:phase}. It has three costs that the idea did not anticipate.
+
+First, the contrast of the hidden image is limited by the gray level. The feasibility condition above confines $A$ to the interval from $\max(0,\,2G-L_{\max})$ to $2G$. A dark gray leaves the hidden image little room at the top; a gray near half the peak luminance gives it the most. The limited contrast is not a side effect of the design but a direct consequence of that inequality.
+
+Second, the second stream is not free. $B$ is determined by $A$. The empty gallery uses two streams' worth of display time to show one hidden image and its complement.
+
+Third, and most important, the concealment works against eyes and not against cameras. A camera with a short exposure, synchronized by accident or design to the display, records individual slots rather than their average. A phone pointed at the gray wall can capture the hidden image. The early notes proposed, separately, a viewing room in which visitors are scanned to prove they carry no cameras or recorders and are then shown an individualized work alone. That proposal turns out to be the other half of the empty gallery. Temporal concealment hides a work from the unaided eye; only the absence of cameras keeps it hidden.
+
+\section{Designed composites in general}
+
+The construction generalizes. With $m$ streams at shares $\delta_1,\ldots,\delta_m$, and a target composite $M$, the streams must satisfy
+\begin{equation}
+\sum_{j=1}^m \delta_j P_j = M.
+\end{equation}
+Any $m-1$ of the streams can be chosen freely, within the display's range, and the last is then fixed:
+\begin{equation}
+P_m=\frac{1}{\delta_m}\Big(M-\sum_{j<m}\delta_jP_j\Big),
+\end{equation}
+subject, as before, to computation in linear light and to the requirement that $0\le P_m\le L_{\max}$ at every pixel.
+
+\begin{proposition}
+Designing the composite costs one stream's worth of freedom. A family of $m$ streams with a prescribed unaided view has at most $m-1$ independently chosen realizations, and the remaining one is constrained both in content and in range.
+\end{proposition}
+
+The proposition states a real trade. With two streams, a designed composite leaves one free realization and makes the other its complement, which is the empty gallery. With three, two realizations are free and the third is a correction term, which may or may not be watchable as a film in its own right. A family that wants every stream to be a good film and the composite to be a good film as well must find content for which all four conditions can hold at once. That is a compositional problem, not an optical one, and it is closer to the construction of an anamorphic painting or a piece of counterpoint than to projection engineering.
+
+\section{Where averaging fails}
+
+The unaided view is an average only approximately, and it fails in predictable places.
+
+When the eyes move quickly across the screen, successive flashes land on different parts of the retina, and the average breaks into a scatter of individual frames, much as some single-chip digital projectors show brief color fringes during eye movements. A carefully designed gray field may show the hidden image for an instant during a saccade.
+
+When objects move in one stream and not another, the average smears, and the smear can reveal the moving outline.
+
+And the average holds only above the fusion rate. Near the flicker floor, and especially in peripheral vision, the alternation itself becomes visible as shimmer, and with it hints of the separate images.
+
+A designed composite therefore degrades gracefully at best. It is reliable as an ambient view and unreliable as a guarantee of secrecy.
+
+\section{Nested viewers}
+
+\Cref{ch:phase} showed that glasses with a coarser period admit the union of several finer streams. A viewer so equipped sees a partial composite: the average of just those streams. This makes a family of designed composites available through the glasses themselves. In a four-stream family, a period-2 setting could show the average of streams 0 and 2 and another the average of 1 and 3, each designed as a coherent realization. A viewer could step from a fine setting to a coarse one and see two realizations fused into a third, then step back. Such hierarchies are demanding to compose, and they are the most distinctive artistic possibility the apparatus offers, because nothing like them exists in any other medium.
+
+\section{The composite and the children's cut}
+
+The analysis also settles a question the idea has often been used to illustrate: an adult film and a children's film on one screen, with glasses deciding which audience sees which. If one stream carries material unsuitable for children and a child removes the glasses, the child sees the composite, and the unsuitable material is in it, at reduced contrast but present. If the composite is suppressed to gray, the child sees gray during divergent passages, and the concealment holds against the eye while failing against any camera. In neither case do the glasses enforce anything. They let a viewer choose the children's film. They do not stop anyone from seeing the other.
+
+This is the distinction the Introduction drew between selection and concealment, now in concrete form. The children's-cut example is useful for explaining the mechanism and misleading as a description of what the mechanism guarantees. The book therefore does not rest on it. Its founding case, taken up in \Cref{ch:genre}, is different: a thriller and a comedy for children telling the same story, made to be watched side by side, with nothing in either that the other audience needs to be kept from. That arrangement asks the glasses only to select, which they do well, and it leaves the composite free to be designed as the room's own version of the film.

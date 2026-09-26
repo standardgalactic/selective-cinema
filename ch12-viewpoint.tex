@@ -1,0 +1,50 @@
+\chapter{Selectable Viewpoint}\label{ch:viewpoint}
+
+A film is shot from somewhere. The camera's position, its movement, and the editing that joins its shots decide what the audience sees of events that, in the fiction, happen all around. A variant family can vary that decision: one realization follows one character, another follows a second; one watches a scene from the doorway, another from across the table. This chapter asks when such variation is only a matter of angle and when it becomes a different story.
+
+\section{Scenes and cameras}
+
+It helps to separate a scene from the ways of filming it. Describe a scene by a model
+\begin{equation}
+\mathcal S=\langle G,\ E,\ C,\ T\rangle,
+\end{equation}
+where $G$ is the geometry of the place, $E$ is the set of events that occur, $C$ is the set of available camera positions and paths, and $T$ is the scene's own timeline. A realization of the scene selects, for each moment, a camera path $c_k(t)\in C$ and an editorial policy for cutting between paths. Two realizations of one scene model share its geometry, events, and timeline and differ only in how they are seen.
+
+Selectable viewpoint in a cinema is modest compared with the freedom of virtual reality, where every viewer steers their own camera. The screen is shared and the number of streams is small, as \Cref{ch:capacity} showed, so each stream is one authored camera path, and the family offers a few of them. What it offers instead is authorship: each viewpoint is composed and edited, not wandered.
+
+\section{Angle and information}
+
+The key distinction is between viewpoints that change \emph{salience} and viewpoints that change \emph{information}.
+
+Two cameras on opposite sides of a conversation show the same events. One favors the speaker's face and the other the listener's, and viewers of each will feel the scene differently, attending to different reactions. But nothing is established in one that is not established in the other. Such viewpoints differ in image distance and leave fact distance at zero.
+
+A camera that follows a character out of the room, while the other realization stays behind, is different. It shows events the other does not: what the character did in the corridor, who they met, what they overheard. Now the realizations establish different things. Let $\mathrm{vis}(c,e)$ indicate whether event $e$ is visible, or audible, from camera path $c$. What a viewpoint establishes is essentially what it lets the viewer witness, and two viewpoints differ in fact distance exactly when they differ on events that some continuation depends on:
+\begin{equation}
+\{\,e\in E:\ \mathrm{vis}(c_a,e)\,\}\cap\mathcal R\ \neq\ \{\,e\in E:\ \mathrm{vis}(c_b,e)\,\}\cap\mathcal R .
+\end{equation}
+
+So camera position is not, in itself, what matters. A radically different angle can leave the story untouched, and a small change, a door left open or closed, can change what a viewer knows. Selectable viewpoint is cheap narratively when it varies salience and as consequential as a causal branch when it varies information. The grammar of \Cref{ch:divergence} placed perspective transformation between the tonal and the causal for this reason.
+
+\section{Point-of-view families}
+
+The most interesting viewpoint families follow different characters. Each realization is the story as one character lives it: what they see, where they go, whom they meet. Such families have a natural structure that the switch system makes visible.
+
+While the characters are apart, their realizations witness different events and establish different things. Fact distance grows, and switching closes. When the characters meet, in the same room, witnessing the same events, their realizations witness the same things and fact distance stops growing. Whether it falls back to zero depends on whether what each character learned apart has been shared; a conversation in which they tell each other what happened does exactly that. So in a point-of-view family, structural rendezvous tend to fall at scenes where the point-of-view characters are together and have caught each other up. The story's meetings are the film's switching points.
+
+This gives writers a clear handle. A point-of-view family that wants viewers to be able to move between characters must bring its characters together, and must let them exchange what they have seen. One that wants each realization to stay private, so that viewers of each character's story keep secrets from each other, can keep the characters apart and let the switch system stay closed. Both are legitimate. They are different films.
+
+\section{Salience without information}
+
+Viewpoints that vary only salience deserve more attention than their narrative cheapness suggests. They are the purest case of what selective cinema offers: the same events, the same facts, the same timing, seen differently. A family of salience viewpoints keeps the realization graph complete, so viewers can move freely between them. It keeps time distance at zero, because the events take the same time however they are seen. It spends only image distance, and that is exactly the budget adaptive gating recovers whenever the viewpoints happen to coincide.
+
+What such a family changes is attention and sympathy. A viewer who watches a quarrel from one party's side and a companion who watches it from the other's will leave having seen the same argument and taken different sides. Nothing either was told contradicts what the other was told. Their disagreement is about the meaning of shared facts, which is the ordinary condition of people who were in the same room, and a salience family reproduces it inside a film. Cinema has long dramatized the related case in which accounts of one event conflict, most famously in \emph{Rashomon} \cite{rashomon}. A salience family is the gentler and in some ways stranger case, in which the accounts do not conflict at all and still produce different verdicts.
+
+\section{Capture and rendering}
+
+Selectable viewpoint can be produced in several ways. Multiple cameras on set can record the same take from several positions, which fixes the performances and lets the realizations share them. Volumetric capture records a scene as geometry and texture, from which camera paths can be chosen later. Virtual production and synthetic environments allow any camera path through a rendered scene.
+
+The more flexible methods make viewpoint cheap to vary after the fact, and they raise a question that returns in \Cref{ch:which-film}: if camera paths can be chosen after shooting, the work is no longer a fixed set of shots but a scene model with rules for viewing it. Selective cinema does not require this, and most of what this chapter describes can be done with ordinary multi-camera shooting. But it sits naturally alongside it, because a scene model is exactly the object from which a family of viewpoints is drawn.
+
+\section{Two angles at once}
+
+The composite of two viewpoints, seen without glasses, is usually the least meaningful of all composites: two angles on a room superimposed, walls and faces at incompatible positions. It is rarely worth designing. But the failure is instructive. The composite of a genre pair or a family of endings could be designed because the realizations shared their staging. Viewpoint families by definition do not. They share events and differ in geometry, and averaging does not respect geometry. The one exception is small differences of angle, a camera shifted a little to one side, whose composite reads as depth rather than confusion. That exception is, of course, stereoscopy, and it returns the apparatus to where \Cref{ch:phase} found its ancestor.

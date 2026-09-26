@@ -1,0 +1,57 @@
+\chapter{The Discrete Image}\label{ch:discrete}
+
+Cinema presents itself as continuous and is not. The screen of a film projector is dark for a substantial part of every second, and the image that is shown is a succession of stills. The continuity belongs to the viewer. This chapter makes that fact precise, because selective cinema is built entirely in the gaps it exposes.
+
+\section{Four kinds of frame}
+
+It is common to say that a film runs at twenty-four frames per second, and the statement hides several different quantities.
+
+The \emph{capture rate} is how many distinct images the camera records per second. For most theatrical film it is twenty-four.
+
+The \emph{encoded rate} is how many distinct images the distributed file or print contains per second. It usually equals the capture rate, but it need not: frames can be interpolated, dropped, or synthesized.
+
+The \emph{flash rate} is how many times per second the projector actually illuminates the screen. A mechanical film projector with a two-bladed shutter shows each frame twice, so twenty-four distinct images produce forty-eight flashes. A three-bladed shutter produces seventy-two. Digital projectors are not bound to a mechanical shutter, but many still repeat frames, and stereoscopic digital exhibition has commonly used a ``triple flash'' arrangement in which each of the two eyes' images is shown three times per frame, giving $24\times 2\times 3=144$ flashes per second.
+
+The \emph{perceived rate} is not a number at all. It is the viewer's impression of motion and steadiness, which depends on the flash rate, the brightness of the image, the speed of the movement depicted, where on the retina the image falls, and whether the eyes are tracking something.
+
+These four quantities are separable, and the separability is the resource. The flash rate is fixed by the projector. What is shown in each flash is not. A projector running at 144 flashes per second is, in effect, a device with 144 slots per second, and nothing about the device requires those slots to carry repetitions of one image rather than images from several films.
+
+\section{Display bandwidth}
+
+Call the flash rate of a display its \emph{refresh rate} $R$, and each flash a \emph{slot}. A conventional film uses its slots to show one sequence, with repetition to reach a flash rate high enough to avoid visible flicker. Write the displayed sequence as
+\begin{equation}
+F=(f_1,f_2,\ldots,f_n),
+\end{equation}
+where each $f_i$ is the image shown in slot $i$. Repeated flashes of one frame appear as consecutive equal entries.
+
+A two-stream projection assigns alternate slots to two films,
+\begin{equation}
+P=(a_1,b_1,a_2,b_2,\ldots,a_n,b_n),
+\end{equation}
+and more generally an $m$-stream projection is any assignment of slots to streams. The relevant resource is therefore not the narrative frame rate of any one film but the \emph{temporal display bandwidth} $R$: the number of slots per second available to be divided among whatever is being shown. Ordinary cinema spends most of that bandwidth on repetition. Stereoscopic cinema spends it on two eyes. Selective cinema proposes to spend it on several films.
+
+\begin{definition}[Display schedule]
+A \emph{display schedule} is a function $\sigma$ from slots to streams, $\sigma(i)\in\{1,\ldots,m\}$, together with the image $P(i)$ shown in each slot. Stream $k$ is the subsequence of images in slots with $\sigma(i)=k$.
+\end{definition}
+
+The definition allows schedules that are not simple alternation. A stream may receive more slots than another, slots may be grouped in blocks, and, as \Cref{ch:phase} shows, a slot may belong to more than one stream if the streams agree on what it should show.
+
+\section{Two constraints from the eye}
+
+Two properties of human vision limit how finely the bandwidth can be divided.
+
+The first is \emph{flicker}. A light that switches on and off appears steady only above a certain rate, the critical flicker fusion frequency. That frequency is not a constant. It rises with brightness, rises in peripheral vision, and varies between individuals. A dim image viewed centrally may look steady at around fifty flashes per second; a bright image seen at the edge of vision may flicker visibly at seventy or more. What matters for selective cinema is the flash rate each \emph{viewer} receives, not the rate of the projector. If the glasses admit one slot in three from a 144-slot projector, the viewer receives 48 flashes per second, which is the flash rate of a two-bladed film projector and is marginal for a bright image.
+
+The second is \emph{motion rendition}. Even when flicker is invisible, a moving object sampled too sparsely looks jerky or doubled, especially when the eyes follow it across the screen. Motion rendition depends on the number of distinct images per second, not on the number of flashes: repeating a frame three times removes flicker but does nothing for judder. Selective cinema therefore has to satisfy two budgets at once. Each stream needs enough flashes to avoid flicker, and enough distinct images to render motion acceptably.
+
+The two budgets are why the division of bandwidth is not a matter of simple arithmetic, and why the next chapters treat capacity with some care. A stream of 24 distinct images per second can be shown with one flash each or three; the second costs three times as many slots and looks steadier. A stream showing a slow conversation and a stream showing a chase make different demands, and a schedule that ignores the difference wastes slots on the first and starves the second.
+
+\section{What the glasses do to time}
+
+Glasses that admit some slots and block others change the viewer's sampling of the screen. They do not change the screen. The consequence is easy to state and important for everything that follows: the glasses can only remove light, never add it. A viewer wearing them sees at most the fraction of the projector's output that falls in admitted slots, and sees it through lenses that are never perfectly transparent.
+
+A second consequence concerns the moments between slots. No real shutter opens and closes instantly, and no real display switches instantly between images. At each boundary there is a brief interval in which the glasses are partly open while the screen is changing, or fully open while the previous image lingers. What leaks through in those intervals is the subject of \Cref{ch:phase}, and it matters more in selective cinema than in stereoscopy. A stereoscopic leak shows one eye a trace of the other eye's view of the same scene, and the result is a faint ghost. A selective leak shows a viewer a trace of a different film.
+
+\section{Summary}
+
+Cinema is a schedule of discrete flashes, and the schedule has more capacity than one film uses. That capacity, the temporal display bandwidth, is what selective cinema divides. The division is constrained by flicker, which limits how few flashes a viewer can receive, and by motion rendition, which limits how few distinct images a stream can contain. The glasses that perform the division can only subtract, and their imperfect timing lets fragments of other streams through. The next chapter specifies the glasses.

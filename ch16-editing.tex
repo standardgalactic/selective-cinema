@@ -1,0 +1,45 @@
+\chapter{Editing Under a Common Clock}\label{ch:editing}
+
+An editor shapes the rhythm of a film: how long each shot lasts, where the cuts fall, how the pace rises and falls. In a variant family the editor shapes several rhythms at once, each of which must feel right on its own and all of which must stay tied to one clock. This chapter describes that task and the outputs it produces, which go beyond a finished cut to include most of the information the projector and glasses need.
+
+\section{Temporal debt}
+
+Each realization has its own rhythm, and it will not match the spine second by second. Write $\delta_k(t)$ for how far realization $k$ is ahead of or behind the spine at clock time $t$, measured in story position: how much of the spine's content the realization has reached. A realization that lingers on a reaction falls behind, and $\delta_k$ goes negative. One that cuts briskly pulls ahead.
+
+A realization that falls behind has borrowed time, and it must repay it: by cutting something later, compressing a transition, or skipping material the other realizations include. Call $\delta_k(t)$ the realization's \emph{temporal debt}. The envelopes of \Cref{ch:genre} require the debt to be cleared at every scene boundary. Stricter synchronization points require it to be cleared within a tolerance $\varepsilon$ at particular moments:
+\begin{equation}
+|\delta_k(t_i)|\le\varepsilon\quad\text{at each synchronization point } t_i .
+\end{equation}
+The tolerance depends on what the point synchronizes. A shared musical downbeat or sound effect needs a few frames at most. A structural rendezvous needs only that the realizations have established the same things, and a debt of a second or two does not matter if both have finished the relevant action. Between synchronization points the debt is free, and that freedom is where each realization's rhythm lives.
+
+\section{The shared track as clock}
+
+Under shared or complementary sound, the soundtrack is common to every realization, and it becomes the family's strictest clock. Every audible event in the shared track happens at one moment for everyone. A door slamming, a gunshot, a chord that resolves: each must be compatible with the picture of every realization at that moment.
+
+This is a strong constraint, and a useful one. It means the editor of a shared-sound family works against a fixed timeline of sound events that no realization can move. It also means that the score, in particular, acts as the family's metronome. A composer writing a complementary score, as in \Cref{ch:composite-sound}, fixes the moments of tension and release for all realizations at once, and the editors of each realization cut to them. The composer and the editors must work together from early on, not in the usual sequence in which music is added after the cut is locked.
+
+\section{Cuts as hiding places}
+
+Several changes in a selective screening are visible if they happen in the middle of a shot and invisible if they happen at a cut. \Cref{ch:capacity} described changes in slot allocation between streams, which alter each stream's brightness and flash rate. \Cref{ch:phase} described adaptive gating, which opens the glasses fully when the streams coincide and closes them to a fraction when they diverge. Both produce steps in brightness. At a cut, the eye expects a change and accepts it. Within a continuous shot, a sudden brightening or dimming looks like a fault.
+
+The editor therefore schedules these changes. Divergence and convergence are placed at cuts where possible, and where a divergence must begin mid-shot, the allocation change is ramped gradually rather than stepped. The same applies to switching. \Cref{ch:choice} will discuss whether viewers should be able to switch at any moment. Where switching is allowed, cuts are the natural places for it, because a switch at a cut looks like an edit and a switch mid-shot looks like a jump.
+
+\section{What the editor delivers}
+
+A conventional editor delivers a finished film. The editor of a variant family delivers that for each realization and, in addition, a set of data that the exhibition system requires.
+
+The \emph{display schedule} of \Cref{ch:discrete}: which stream occupies each slot, and how the allocation changes over time.
+
+The \emph{coincidence map}: for each moment, which streams coincide. Following \Cref{ch:phase}, coincidence is judged on the images as displayed, within a declared perceptual tolerance, not on stored values. It drives adaptive gating and the brightness changes that go with it.
+
+The \emph{switch system} of \Cref{ch:switch-admissibility}: its reachable states and admissible transitions over time, computed from the variant matrix and checked against the final cut, since editing can change what is established and when.
+
+The \emph{protection profile}: how strict the leakage requirements are at each moment. \Cref{ch:endings} argued that tolerance for leakage should tighten as a family approaches information that one realization must keep from another, and the profile tells the projector when to lengthen blanking intervals or reduce the number of active streams to protect a revelation.
+
+The \emph{composite}, if the family designs one: the unaided view, checked for what it shows at each moment, including what it might reveal.
+
+These deliverables are as much a part of the work as the pictures. A family exhibited without them can be shown, but badly: with wrong brightness, closed glasses during shared passages, unprotected revelations, and switches that land viewers in incoherence.
+
+\section{Review}
+
+Finally, the editor of a family must review it in ways an ordinary editor does not. Each realization must be watched on its own and judged as a complete film. The composite must be watched without glasses. Switches must be tried: at the points the switch system allows, to confirm they work, and at points it forbids, to see what goes wrong and whether the prohibition is worth its cost. And the family must be watched as an audience will watch it, several people in one room on different realizations, listening to the shared track and to each other's reactions. Only the last reveals whether the family is one occasion or several films sharing a wall, which is the question the next part of the book takes up.

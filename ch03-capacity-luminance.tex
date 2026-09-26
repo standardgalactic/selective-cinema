@@ -1,0 +1,65 @@
+\chapter{Capacity and Luminance}\label{ch:capacity}
+
+How many films can one screen carry? The question has a simple answer and a correct one, and the difference between them is where the design work lies.
+
+\section{The simple bound}
+
+If a display has refresh rate $R$ and every stream needs at least $r_{\min}$ flashes per second to look steady, then evenly interleaved streams, each receiving $R/m$ flashes, satisfy the requirement only if
+\begin{equation}
+m\le\left\lfloor\frac{R}{r_{\min}}\right\rfloor.
+\end{equation}
+With $R=144$ and a flicker floor of 48 flashes per second, three streams fit. With a floor of 72, two fit. The bound is useful as a first estimate and wrong in three ways: it ignores the time lost to switching, it treats flicker as the only visual requirement, and it assumes every stream needs the same share at every moment.
+
+\section{The correct budget}
+
+\Cref{ch:discrete} separated two visual requirements. A stream needs enough flashes to avoid flicker and enough distinct images to render motion. Suppose stream $k$ shows $d_k$ distinct images per second and repeats each $n_k$ times, so that it receives $d_kn_k$ flashes per second. Suppose also that a fraction $b$ of the display's time is spent blanked while the shutters switch, as described in \Cref{ch:phase}. Then a schedule is feasible only if
+\begin{equation}
+\sum_{k=1}^{m} d_k\,n_k\ \le\ (1-b)\,R,
+\qquad
+d_kn_k\ge r_{\min},
+\qquad
+d_k\ge d_{\min}.
+\end{equation}
+The first condition says the streams together cannot use more slots than exist. The second is the flicker floor, and the third the motion floor.
+
+Two consequences follow immediately. First, blanking is not a small correction. If a fifth of the time is spent dark, a fifth of the capacity is gone. Second, the flicker floor applies to flashes and the motion floor to distinct images, so a stream can meet the first cheaply by repetition only if it meets the second already. A film captured at 24 images per second, shown once each, receives 24 flashes, well below any acceptable flicker floor; it needs at least two flashes per image, and at bright levels three. A stream captured at 48 images per second, shown once each, meets both floors with the same number of slots that a 24-image stream shown twice would use, and renders motion better. High-frame-rate capture therefore does not cost selective cinema anything extra. It spends the same slots better.
+
+\section{Unequal and changing allocation}
+
+Nothing in the budget requires every stream to receive the same share or to keep its share throughout the film. A long dialogue scene in one realization and a chase in another make different demands on motion rendition. A schedule could shift slots toward the stream that needs them and back again, provided each stream stays above both floors at all times.
+
+Allocation can also change with coincidence. \Cref{ch:phase} described adaptive gating, in which the glasses open fully while the streams show the same image. During such passages the multiplex costs nothing, and the full display is available to everyone. Capacity is therefore not a fixed property of a film. It is consumed only during divergence, and a variant family with long shared passages can afford more streams during its short divergent ones than the simple bound suggests.
+
+The limit on this flexibility is continuity of appearance. A stream whose flash rate or brightness jumps when the allocation changes will look as if the projector faltered. Changes must be gradual, or hidden at cuts, and editing must plan them (\Cref{ch:editing}).
+
+\section{Luminance}
+
+Each viewer's glasses are closed for most of the cycle, and closed glasses pass no light. If stream $k$ is admitted for a fraction $\delta_k$ of the display's time, the glasses transmit a fraction $T$ of the light when open, and the display produces luminance $L_P$, then the viewer sees
+\begin{equation}
+L_k\approx \delta_k\,T\,L_P.
+\end{equation}
+With two streams and ideal glasses, a viewer sees at most half the light; with three, a third. Real shutter glasses transmit well under all of the light even when open, and blanking reduces $\delta_k$ further. Stereoscopic exhibition, which already halves the light per eye and loses more to the glasses, is widely experienced as dim. A selective system that also carried stereoscopy would divide the light again.
+
+Adaptive gating improves this in the same proportion as it improves capacity. If the streams coincide for a fraction $c$ of the running time and diverge for the rest, the time-averaged luminance a viewer receives is approximately
+\begin{equation}
+\bar L_k\approx T\,L_P\,\big(c+(1-c)\,\delta_k\big).
+\end{equation}
+A two-stream family that coincides for half its length gives each viewer three quarters of the light of an ordinary screening, not half. The brightness then varies with the film, higher in shared passages and lower in divergent ones, which is itself a visible signal and must be managed like the allocation changes above.
+
+\section{The compensation trap}
+
+The obvious remedy for lost light is a brighter projector. It helps less than it seems to, for three reasons.
+
+The first is flicker. The critical flicker fusion frequency rises with brightness. Raising the luminance to compensate for a low duty cycle makes each flash brighter, and brighter flashes need a higher flash rate to look steady. Compensation for light therefore tightens the flicker floor, which reduces the number of streams the display can carry. Light and capacity are not independent budgets. Spending on one draws down the other.
+
+The second is the unaided view. Anyone in the room without glasses, or who lifts them for a moment, sees the full output of the projector. A screen bright enough to give glasses-wearers a comfortable image at a third of the duty cycle is three times too bright for everyone else.
+
+The third is cost. More light means more power and more heat, and in large theaters light output is already close to what projectors can supply for ordinary two-dimensional exhibition.
+
+The trap has one exit, and it is the same one as before. The cheapest light in selective cinema is the light not lost to gating, which means the most important economy is designing variant families that share as much as they can and diverge only where the divergence matters.
+
+\section{A realistic estimate}
+
+Taken together, the constraints suggest that a present-day cinema projector at 144 slots per second can carry two streams comfortably and three with care, if the films are captured at a high frame rate, blanking is kept short, and the family shares a substantial part of its running time. Displays with higher refresh rates, such as emissive LED screens, raise the ceiling, but brightness and flicker do not scale away. Each additional stream costs light that every viewer pays for.
+
+This is a strong constraint on what selective cinema can promise. It rules out the image, suggested by some promotional descriptions of the idea, of a single screening offering a dozen independent films. It favors small families of closely related realizations over large menus of unrelated ones. That is not a defect in the proposal. It is a pressure toward the form the rest of the book argues for on other grounds: a few versions of one work, designed together, rather than many works sharing a wall.

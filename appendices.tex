@@ -1,0 +1,153 @@
+\chapter{Two-Stream Reference Specification}\label{app:spec}
+
+This appendix specifies a minimal two-stream system, sufficient for a first prototype of the kind described in Appendix~E.
+
+\emph{Display.} A projector or emissive screen refreshing at $R=144$ slots per second, with a controllable blanking interval of duration $\beta$ at the start of each slot. Streams occupy period $p=2$: stream 0 in even slots, stream 1 in odd slots. Each stream receives 72 flashes per second; content captured at 24 images per second is shown three times per image, or content captured at 72 images per second once each.
+
+\emph{Gating.} Each lens follows the gate $g_{2,\varphi}$ of \Cref{ch:phase}, opening after the blanking interval of each admitted slot and closing before the next slot begins. With slot duration $1/R\approx 6.94$ ms, the open interval is at most $1/R-\beta$, less the shutter's switching time.
+
+\emph{Adaptive gating.} When the coincidence map marks a slot as coincident, meaning the displayed images of both streams agree within the declared perceptual tolerance, the glasses remain open through it. Transitions between gated and open operation are scheduled at cuts or ramped over at least several hundred milliseconds, and are never repeated at a regular interval.
+
+\emph{Synchronization.} A beacon transmits, at least once per frame period, a packet carrying the slot counter, the current coincidence flag for the next several slots, the current protection level, and a schedule identifier. Glasses maintain a local oscillator locked to the slot counter, so that brief loss of the beacon does not lose phase.
+
+\emph{Selection.} A two-position dial sets $\varphi\in\{0,1\}$. The glasses store only the dial position and, if the exhibition permits switching under the switch system, the current switch state of \Cref{ch:switch-admissibility}.
+
+\emph{Failure.} On loss of the beacon beyond the oscillator's holdover time, the glasses enter the declared failure mode (transparent, opaque, or common-stream), which the beacon's protection level may specify per passage.
+
+\emph{Excluded components.} The glasses contain no camera, eye tracker, microphone, general-purpose storage, or transmitter. This exclusion is part of the specification, not an option.
+
+\chapter{Variant-Manuscript Notation}\label{app:notation}
+
+A variant manuscript records the spine and columns of \Cref{ch:matrix}. Each production unit is written as a block with a shared header and one column per realization. A minimal plain-text form follows.
+
+\begin{verbatim}
+UNIT 14  "The control room"
+  ENVELOPE      00:41:10 - 00:43:55
+  ANCHORS       00:41:10 door opens (shared sound)
+                00:43:55 lights fail (shared sound)
+  SPINE         Theseus enters; overrides the broadcast console;
+                the dome lights fail.
+  COLUMN RNP    Played for dread. Close on Theseus's hands.
+                ESTABLISHES  console_overridden
+                PRESUPPOSES  knows_override_code
+  COLUMN BNP    Played as a prank. Wide, with the guard asleep.
+                ESTABLISHES  console_overridden
+                PRESUPPOSES  knows_override_code
+  DIALOGUE      Faces speaking in both columns: "It's done."
+                (single recorded line; shared track)
+  COINCIDENT    final 4 s (lights fail, both columns)
+  RECONCILE     none; rendezvous at end of unit
+  PROTECTION    casual
+\end{verbatim}
+
+The fields correspond to the tuple $\langle A_i,V_i,\Delta_i,Q_i\rangle$: ANCHORS and ENVELOPE to $A_i$, the COLUMN entries to $V_i$, ESTABLISHES and PRESUPPOSES to $\Delta_i$, and RECONCILE to $Q_i$. DIALOGUE, COINCIDENT, and PROTECTION feed the dialogue check, the coincidence map, and the protection profile.
+
+\chapter{Exhibition Manifest}\label{app:manifest}
+
+The manifest of \Cref{ch:persuasion} is published with the variant registry for every screening. A minimal form follows; values in parentheses are placeholders.
+
+\begin{verbatim}
+WORK            Rarely/Barely Needed Protocols
+REGISTRY        (public registry identifier)
+SCREENING       (venue, date, start time)
+DISPLAY         144 slots/s, period 2, adaptive gating on
+SOUND           complementary score, shared
+STREAM 0        realization RNP  (thriller)   phase 0
+                authors: (credits)   fingerprint: (hash)
+STREAM 1        realization BNP  (satire)     phase 1
+                authors: (credits)   fingerprint: (hash)
+COMPOSITE       designed; fingerprint: (hash)
+SWITCHING       structural rendezvous only
+FAILURE MODE    transparent (casual passages),
+                opaque (protected passages)
+SPONSORED       none
+DISTRIBUTIVE    none
+\end{verbatim}
+
+A viewer reads the phase on their own glasses and finds the corresponding stream in the manifest. Nothing about the viewer is recorded.
+
+\chapter{Evaluation Protocol}\label{app:protocol}
+
+The protocol follows the four groups of \Cref{ch:evaluation}. Technical tests measure refresh stability, phase drift over a full screening, optical crosstalk, informational legibility of leaked frames at protected moments, luminance through the glasses in coincident and divergent passages, central and peripheral flicker, the timing and regularity of brightness changes, performance across seating positions, and behavior under loss of beacon and power. Narrative tests watch each realization alone, review the family's relations and asymmetries, attempt admissible and forbidden switches including multi-switch paths, and compare the memories of viewers of different realizations. Social tests ask mixed audiences whether they attended one event, how they experienced others' reactions, how the conversation afterward went, and whether they felt ranked. The ethical audit inspects the glasses for excluded components, checks the manifest against the exhibited streams, confirms provenance, and reviews the disclosure given to the audience. A family is not exhibited until all four groups pass.
+
+\chapter{Prototype Film}\label{app:prototype}
+
+A short experimental production would cross three dimensions, each with two options: genre, comedy or drama; explanation, beginner or expert; ending, A or B. The nominal space contains eight realizations. The prototype would not show all eight in one screening, which Part~I rules out, but would produce all eight and exhibit them in pairs and triples.
+
+Its purpose is to measure the couplings \Cref{ch:divergence} predicted. Does changing genre change the time available for explanation? Does each ending remain earned in both genres, or does one ending need different seeds in the comic and dramatic realizations? How far do the eight realizations actually differ in image, fact, and time distance, and how far does the nominal count of eight overstate the family? The answers would show whether dimensions that are analytically independent can be made operationally independent, and at what cost.
+
+\chapter{Glossary}\label{app:glossary}
+
+\begin{description}
+\item[Adaptive gating] Opening the glasses fully while streams coincide on screen, so that multiplexing costs are paid only during divergence.
+\item[Blink-rate glasses] Glasses whose lenses open and close on a schedule synchronized to the display; the rate belongs to the shutter, not the wearer.
+\item[Coincidence] Agreement of streams' displayed images within a declared perceptual tolerance.
+\item[Common channel] Any element of a screening received identically by everyone present.
+\item[Composite] What the unaided eye sees: the time-weighted average, in linear light, of all streams.
+\item[Envelope] An interval on the common clock within which every realization must begin and end a scene.
+\item[Occasion-preserving family] A family exhibited with bounded drift, recurring structural rendezvous, and a common channel.
+\item[Period and phase] The two integers that fix a periodic gate: how many slots per cycle, and which slot opens.
+\item[Protection profile] The schedule of leakage requirements across a film.
+\item[Realization] One complete audiovisual experience within a family.
+\item[Rendezvous, structural] A time at which every realization establishes the same relevant facts.
+\item[Rendezvous, viewer-relative] A time at which a particular history admits a switch into every realization.
+\item[Selection and concealment] Choosing a stream, and preventing someone from seeing one; different functions with different obligations.
+\item[Switch admissibility] The condition that a history covers what a continuation presupposes and does not contradict what it commits to.
+\item[Switch system] The transition system whose states summarize viewers' histories for purposes of switching.
+\item[Temporal debt] A realization's displacement from the spine on the common clock.
+\item[Variant family] A set of realizations designed for synchronized presentation.
+\item[Variant matrix] The writing format of spine and columns that records a family's relations.
+\end{description}
+
+\chapter{Provenance}\label{app:provenance}
+
+The ideas developed in this book first appear in two conversational notebooks, conversations with a language model archived in the author's public repositories. Only the author's own turns are quoted here, verbatim, including their original spelling. The model's replies elaborated these ideas in various directions, and none of that elaboration is claimed as a source.
+
+\section*{\emph{Rarely Needed Protocols}}
+
+{\raggedright Archived at \texttt{standardgalactic/\allowbreak{}library/\allowbreak{}rarely-needed-protocols.txt} and \texttt{standardgalactic/\allowbreak{}academizer/\allowbreak{}stack/\allowbreak{}Rarely Needed Protocols.txt}. Commit dates: to be completed from the repository history.\par}
+
+The frame world:
+\begin{quote}
+What if we called black and white televisions ``normal televisions'' and color TVs ``Baird Televisions''?
+
+It's for an alternate world where all televisions are are round and square televisions are banned as well as flat screens and only cathode ray tubes or spinning projectors are permitted.
+\end{quote}
+
+The paired films and the shared soundtrack:
+\begin{quote}
+I'm liking it the two versions are Rarely Needed Protocols a sci fi thriller, and Barely Needed Protocols, which is a satirical comedy show made for kids, but they can be watched simultaneously, as they have overlapping, complementary soundtracks.
+\end{quote}
+
+The glasses and multiple storylines:
+\begin{quote}
+I also wanted to popularize the blink rate glasses needed to watch them as there are alternate plots and story lines set to different blink rates.
+\end{quote}
+
+Selection by phase:
+\begin{quote}
+So they can be manual as well like an old film projector as shot I mean they select different frames like all to 60 fps or something, but it depends which frame you start on
+\end{quote}
+
+And, after the model's reply interpreted ``blink rate'' as the viewer's own blinking, the correction that fixes the term's meaning:
+\begin{quote}
+I was referring to the shutter mechanism
+\end{quote}
+
+\section*{\emph{Transcendental Movie Ideas}}
+
+{\raggedright Archived at \texttt{standardgalactic/\allowbreak{}mirror/\allowbreak{}Transcendental Movie Ideas.txt} and \texttt{standardgalactic/\allowbreak{}academizer/\allowbreak{}stack/\allowbreak{}Transcendental Movie Ideas.txt}. Commit dates: to be completed from the repository history.\par}
+
+Keyed sequences and protection:
+\begin{quote}
+How about blink-rate glasses with patented algorithmic blink rates allowing certain pieces to be seen if they have the correct blink rate algorthm, or blink rate protectors and active lens frames set to the correct blink sequence?
+\end{quote}
+
+The private viewing room:
+\begin{quote}
+I also thought of an art piece that you have to prove you have no cameras or recorders by an airport like scan and are alone in the room where you are shown an original individualized piece of art and given a verbal pass phrase for accessing it online later
+\end{quote}
+
+\section*{Other references}
+
+Blink-rate glasses also appear, as an alternative interface and perceptual aid rather than as a cinema device, in \texttt{standardgalactic/\allowbreak{}academizer/\allowbreak{}stack/\allowbreak{}Analog Hypermedia.txt} and in several files of \texttt{standardgalactic/\allowbreak{}kitbash}, including a list of alternative interfaces that names ``blink-rate glasses with filter controls.'' A later discussion of blink-rate cinema and multiplexed projection has been reported from another conversation history, dated August 2025; it is noted here as unverified until its transcript is located.

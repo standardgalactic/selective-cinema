@@ -1,0 +1,51 @@
+\chapter{The Variant Matrix}\label{ch:matrix}
+
+A conventional screenplay describes one film. It lists scenes in order and, within each, what is seen and said. A variant family cannot be written this way, because what matters most about it is not visible in any single realization: what the realizations share, where they differ, what each establishes, and where they come back together. This chapter proposes a writing format that makes those relations explicit, the \emph{variant matrix}.
+
+\section{Spine and columns}
+
+The matrix has two parts. The \emph{spine} is the sequence of what all realizations share: the scenes, their envelopes on the common clock, the events every realization depicts, and the structural rendezvous. It is written first, and it is the family's skeleton. The \emph{columns} run beside the spine, one per realization, and record how each realization renders each scene: its performance, framing, dialogue, explanation, and whatever else varies.
+
+A reader of the matrix reads down the spine to follow the story everyone sees, and across a row to see how one moment is realized in each version. Neither reading alone is the work. The spine without the columns is an outline; a column without the spine is one film with its dependencies hidden.
+
+\section{What each row records}
+
+Each row of the matrix is a production unit, usually a scene, and records four things beyond its content.
+
+Write the unit as
+\begin{equation}
+U_i=\langle A_i,\ V_i,\ \Delta_i,\ Q_i\rangle .
+\end{equation}
+$A_i$ are the unit's \emph{anchors}: its envelope on the common clock and any moments within it that all realizations must meet, such as a shared sound event or the start of a common shot. $V_i$ are the \emph{permitted variants}: how each realization is allowed to render the unit, and which transformations of \Cref{ch:divergence} it uses. $\Delta_i$ is the \emph{state difference} the unit leaves behind: for each realization, the literals it establishes and the presuppositions it relies on, in the terms of \Cref{ch:switch-admissibility}. $Q_i$ are the unit's \emph{reconciliation requirements}: which differences must be brought back into agreement, and by which later unit.
+
+From these four fields, most of what earlier chapters described can be computed rather than guessed. The switch system follows from the established and presupposed literals. The structural rendezvous are the units after which every realization's established set agrees on $\mathcal R$. The time budget follows from the envelopes and the realizations' planned durations within them. The light budget follows from which shots coincide across columns.
+
+\section{Checks}
+
+The matrix supports a set of checks a writer can run on a draft, by hand or with software.
+
+A \emph{coverage check} asks, for every unit and realization, whether what the unit presupposes has been established earlier in that realization. It catches a realization referring to something it never showed.
+
+A \emph{consistency check} asks whether any realization commits later to the negation of something it established. It catches a realization contradicting itself.
+
+A \emph{switching check} computes the switch system and shows where viewers can and cannot move. It catches families that were meant to be freely switchable and have quietly closed, and it shows where one-way windows open and close.
+
+An \emph{envelope check} sums each realization's planned durations within each envelope and flags any that do not fit.
+
+A \emph{dialogue check} flags every moment at which a face is seen speaking in more than one realization, and, if the family uses shared sound, confirms that the words match, as \Cref{ch:composite-sound} requires.
+
+A \emph{seed check}, for families of endings, confirms that each ending's preparation is present in the realizations that lead to it and absent where it would give the ending away.
+
+A \emph{contamination check} flags information that one realization must keep from another's viewers, and asks where that information could escape: in a shared shot, in the composite of \Cref{ch:unfiltered}, or in leakage through the glasses near a transition. A clue meant only for the expert realization is contaminating if it appears in the background of a shot both realizations share.
+
+None of these checks settles whether the family is good. They settle whether it is coherent, which is a precondition that is very hard to meet by intuition once a family has more than two realizations.
+
+\section{Writing order}
+
+The matrix suggests a writing order. The spine comes first: the events all realizations share, placed on the clock, with the rendezvous marked. The columns come next, written against the spine and against each other. Then the checks, and then revision, which will often move material between the spine and the columns. A scene that the realizations were meant to render differently may turn out to need a shared core to keep a rendezvous possible. A scene meant to be shared may need to split because one realization's genre or depth cannot live with it.
+
+It follows that the family's writers must work together, not in sequence. A column cannot be written by a separate team after the spine is fixed, because the column's choices constrain the other columns through the envelopes, the dialogue constraint, and the switch system. The family is written as a whole or it does not cohere.
+
+\section{The matrix as a record}
+
+The matrix is also the family's most important record. It states what the family is: which realizations exist, what each is permitted to be, how they correspond, and where they agree. \Cref{ch:which-film} argues that the identity of a selective work lies in exactly these declared constraints rather than in any single sequence of frames. If that argument holds, the matrix is not a production document to be discarded after release. It is the closest thing the work has to a text, and it should be preserved with at least the care given to the footage. Appendix~B sketches a notation for it.

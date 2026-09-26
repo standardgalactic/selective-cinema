@@ -1,0 +1,96 @@
+\chapter{Period and Phase}\label{ch:phase}
+
+This chapter specifies the glasses. It begins with a correction of terminology, moves to the one idea on which the whole apparatus depends, and ends with the ways the apparatus fails.
+
+\section{What ``blink rate'' means}
+
+The name invites a misreading. It suggests glasses that respond to the wearer's own blinking, perhaps by detecting how often the eyelids close and switching streams accordingly. Nothing of the kind is intended. The blinking belongs to the lenses. Each lens is a shutter that opens and closes on a schedule synchronized to the projector, and the ``rate'' is the rate of that schedule. The glasses do not observe the wearer at all. This is not a minor clarification. A device that measured the wearer's eyes would be a sensor pointed at a person, with everything that implies about data and consent. A device that only times its own shutter is an optical filter, and it can be built so that it has no means of measuring anything.
+
+\section{Rate is not enough}
+
+Suppose the projector runs at 60 slots per second and alternates two films, one in the odd slots and one in the even slots. A viewer who wants either film needs glasses that open 30 times per second. Both viewers' glasses therefore have the same rate. What distinguishes them is where in the cycle the shutter opens: on the first slot or on the second. The film a viewer sees is determined not by how often the shutter opens but by which slot it starts on.
+
+This is the essential point, and it generalizes. Number the slots $i=0,1,2,\ldots$. A periodic shutter schedule is fixed by two integers: a \emph{period} $p\ge 1$, the number of slots in one cycle, and a \emph{phase} $\varphi\in\{0,\ldots,p-1\}$, the slot within the cycle at which the shutter opens.
+
+\begin{definition}[Periodic gate]
+The periodic gate with period $p$ and phase $\varphi$ is the function
+\begin{equation}
+g_{p,\varphi}(i)=
+\begin{cases}
+1 & \text{if } i\equiv\varphi \pmod p,\\
+0 & \text{otherwise.}
+\end{cases}
+\end{equation}
+Its \emph{admitted set} is $S_{p,\varphi}=\{\,i: g_{p,\varphi}(i)=1\,\}$.
+\end{definition}
+
+A viewer wearing glasses set to $(p,\varphi)$ sees exactly the images in $S_{p,\varphi}$. At a projector refresh rate $R$, the viewer receives $R/p$ flashes per second regardless of phase. The phase changes nothing about how much the viewer sees, only what.
+
+\begin{proposition}\label{prop:partition}
+For fixed $p$, the admitted sets $S_{p,0},\ldots,S_{p,p-1}$ are pairwise disjoint and together contain every slot.
+\end{proposition}
+
+\begin{proof}
+Every integer has exactly one residue modulo $p$.
+\end{proof}
+
+A projector with period-$p$ scheduling therefore carries exactly $p$ non-overlapping streams, one per phase, each at rate $R/p$. At 144 slots per second, period 2 gives two streams of 72 flashes per second, period 3 gives three streams of 48, and period 6 gives six streams of 24.
+
+\section{Nested periods}
+
+Periods need not be the same for every viewer. If one period divides another, the coarser schedule contains the finer ones.
+
+\begin{proposition}\label{prop:nesting}
+If $p$ divides $q$, then
+\begin{equation}
+S_{p,\varphi}=\bigcup_{\substack{0\le\psi<q\\ \psi\equiv\varphi \ (\mathrm{mod}\ p)}} S_{q,\psi}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+A slot $i$ lies in $S_{p,\varphi}$ exactly when $i\equiv\varphi$ modulo $p$. Its residue $\psi$ modulo $q$ then satisfies $\psi\equiv\varphi$ modulo $p$, because $p$ divides $q$; conversely any such $\psi$ gives $i\equiv\varphi$ modulo $p$.
+\end{proof}
+
+The proposition has a direct use. Suppose a projector runs four streams at period 4. A viewer at period 2 and phase 0 admits the slots of streams 0 and 2 together. If those two streams were designed as, for example, the comic and dramatic versions of the same scene, the period-2 viewer receives both interleaved, at twice the flash rate and twice the brightness of either, and sees their temporal average. Whether that average is meaningful depends on whether it was designed to be, which is the subject of \Cref{ch:unfiltered}. Nesting turns the set of available schedules into a hierarchy: fine settings select individual streams, and coarse settings select designed combinations of them.
+
+\section{Shared slots}
+
+Periodic gates of one period partition the slots. Nothing requires the streams of a variant family to be disjoint in this way. Two realizations of the same film share a great deal: establishing shots, action that both versions depict identically, the credits. During such passages the streams do not differ, and there is no reason to spend separate slots on them.
+
+The general case is best described by the admitted sets directly. Each stream $k$ is assigned a set $S_k$ of slots its glasses open for, and a slot may belong to several streams if the image in it is correct for all of them. For example, with period 3, let phase 0 be common, phase 1 belong to realization $A$, and phase 2 belong to realization $B$. Viewers of $A$ admit phases 0 and 1; viewers of $B$ admit phases 0 and 2. Each receives two slots in three rather than one in two. The common slot must carry an image that is right for both, which it can do whenever the two realizations coincide in that moment, and which constrains the design whenever they do not.
+
+\section{Adaptive gating}
+
+The shared-slot idea points to something more useful. The streams of a variant family diverge in some passages and coincide in others. When they coincide, every slot shows an image correct for every realization, and the glasses have no reason to close at all. If the synchronization signal carries not only the slot clock but also a flag indicating whether the streams currently coincide, the glasses can open fully during common passages and gate only during divergent ones. Coincidence must be judged on what the display emits, not on stored values: two streams coincide in a slot when their displayed images agree within a declared perceptual tolerance. Identical code values can differ on screen if the streams are graded differently, and different code values can be indistinguishable once displayed, so a test on stored data would be both too strict and too loose.
+
+The effect is that the costs of multiplexing, in brightness and in flash rate, are paid only while the films actually differ. A comedy and a drama that share half their footage cost half as much light as two unrelated films. It also means that a viewer without glasses sees the correct image during common passages, because every slot shows the same thing. The unaided view degrades only where the family diverges, a fact \Cref{ch:unfiltered} develops.
+
+Adaptive gating requires the projector to know, slot by slot, which streams coincide. That knowledge belongs in the exhibition metadata and is produced during editing (\Cref{ch:editing}). It also creates a visible cue: a viewer can notice when the lenses stop darkening and infer that the streams have converged. Whether that cue should be suppressed, for instance to protect a surprise, is a design choice rather than a technical necessity.
+
+\section{Synchronization}
+
+The glasses must know where the projector is in its cycle. The usual arrangement is a beacon, infrared or radio, that transmits a timing reference, and a small oscillator in each pair of glasses that locks to it, so that brief interruptions of the signal do not immediately lose the phase. The beacon can also carry the adaptive-gating flag and a schedule identifier.
+
+The phase a viewer selects is, in the simplest arrangement, a dial on the glasses. It is worth noting how little else the glasses need. A shutter, a timing circuit locked to the beacon, and a dial are sufficient. There is no need for a camera, an eye tracker, a network connection, storage, or an account. The simplest possible implementation is close to mechanical, a rotating or oscillating shutter driven in step with the projector, which is what the Teleview system of 1922 used for stereoscopy. Glasses built this way can be shown, by inspection, to be incapable of recording what their wearer sees or measuring how their wearer responds. That is an architectural guarantee, stronger than any policy, and Part~VIII argues that it should be treated as a requirement rather than a limitation.
+
+\section{Leakage}
+
+The ideal model is that a viewer on stream $k$ sees exactly the images in $S_k$. Write $P(t)$ for the image on the screen at time $t$ and $g_k(t)$ for the ideal gate of stream $k$. The ideal received signal is
+\begin{equation}
+V_k(t)=g_k(t)\,P(t).
+\end{equation}
+Real shutters take time to open and close, are not perfectly opaque when closed or perfectly clear when open, and may drift slightly out of phase. Real displays take time to change from one image to the next, and some leave a trace of the previous image. A more honest model is
+\begin{equation}
+V_k(t)=\tau_k(t)\,P_k(t)+\sum_{j\ne k}\epsilon_{kj}(t)\,P_j(t),
+\end{equation}
+where $P_j(t)$ is stream $j$'s image, $\tau_k$ is the actual transmission of the glasses for their own stream, and $\epsilon_{kj}$ is the leakage of stream $j$ into the view of stream $k$.
+
+At 144 slots per second each slot lasts under seven milliseconds, and common liquid-crystal shutters take a non-negligible fraction of that to change state. The standard remedy is to insert a short dark interval between slots, blanking the screen while the shutters switch. This reduces leakage and costs light, because the dark interval is time in which nothing is shown. The trade between leakage and brightness is the first engineering choice any selective system has to make, and it has no free solution.
+
+Leakage has two measures, and they come apart. The first is optical: how much light from other streams reaches the eye. The second is informational: whether that light carries anything recognizable. A faint, blurred trace of a different image is optically measurable and may be informationally empty. A brief, clear glimpse of a face, a word, or a final scene may be optically small and informationally decisive. Stereoscopic cinema could tolerate leakage because both streams showed the same scene. Selective cinema cannot assume that, and the acceptable level of leakage depends on what the leaked streams contain. \Cref{ch:after-screening} develops this into a graded standard tied to narrative consequence.
+
+\section{Phase is not a secret}
+
+A final property of the apparatus sets up the political questions of Part~VIII. In the scheme described here, the phase of each stream is not hidden. Anyone with adjustable glasses can turn the dial and see any stream. The system selects; it does not conceal.
+
+Concealment would need something more. One possibility is a schedule that is not periodic: slots assigned to streams by a pseudorandom sequence generated from a key, so that only glasses holding the key open at the right moments. Such a system is closer to encryption than to selection, and it changes what the glasses are. They now carry a secret, need a way to receive it, and can be licensed, revoked, or restricted to approved hardware. The early notes behind this book imagined exactly this, patented blink sequences and ``blink-rate protectors'' that let only authorized glasses see a work, and the idea is both technically plausible and the point at which a viewing device becomes an instrument of control. \Cref{ch:perceptual-rights} examines it. For now the distinction can be fixed in one sentence: periodic gating makes a film selectable, and keyed gating makes it restricted, and the two should not be sold under the same description.
